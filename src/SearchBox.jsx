@@ -4,6 +4,18 @@ import "./SearchBox.css";
 import { useState } from 'react';
 
 export default function SearchBox() {
+	const API_URL = "http://api.openweathermap.org/data/2.5/weather";
+	const API_KEY = import.meta.env.VITE_API_KEY;
+
+	let getWeatherInfo = async (city) => {
+		let response = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
+		let jsonResponse = await response.json();
+		console.log(jsonResponse);
+		let result = {
+			temp: jsonResponse.main.temp
+		}
+	}
+
 	let [city, setCity] = useState("");
 
 	let handleChange = (evt) => {
@@ -13,6 +25,7 @@ export default function SearchBox() {
 	let handleSubmit = (evt) => {
 		evt.preventDefault();
 		setCity("");
+		getWeatherInfo(city);
 	}
 
 	return (
