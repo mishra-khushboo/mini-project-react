@@ -12,8 +12,15 @@ export default function SearchBox() {
 		let jsonResponse = await response.json();
 		console.log(jsonResponse);
 		let result = {
-			temp: jsonResponse.main.temp
-		}
+			city: "Mumbai",
+			temp: jsonResponse.main.temp,
+			tempMin: jsonResponse.main.temp_min,
+			tempMax: jsonResponse.main.temp_max,
+			humidity: jsonResponse.main.humidity,
+			feelslike: jsonResponse.main.feels_like,
+			weather: jsonResponse.weather[0].description,
+		};
+		console.log(result);
 	}
 
 	let [city, setCity] = useState("");
